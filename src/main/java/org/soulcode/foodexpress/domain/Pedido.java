@@ -1,6 +1,7 @@
 package org.soulcode.foodexpress.domain;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Pedido {
@@ -10,13 +11,16 @@ public class Pedido {
     private Cliente cliente;
     private Funcionario funcionario;
 
+    private ArrayList<Item_Pedido> itens = new ArrayList<Item_Pedido>();
+
     public Pedido() {}
 
-    public Pedido(Integer id, LocalDateTime hora_pedido, Cliente cliente, Funcionario funcionario) {
+    public Pedido(Integer id, LocalDateTime hora_pedido, Cliente cliente, Funcionario funcionario, ArrayList<Item_Pedido> itens) {
         this.id = id;
         this.hora_pedido = hora_pedido;
         this.cliente = cliente;
         this.funcionario = funcionario;
+        this.itens = itens;
     }
 
     public Integer getId() {
@@ -49,5 +53,13 @@ public class Pedido {
 
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
+    }
+
+    public ArrayList<Item_Pedido> getItens() {
+        return itens;
+    }
+
+    public void setItens(ArrayList<Item_Pedido> itens) {
+        this.itens = itens;
     }
 }
