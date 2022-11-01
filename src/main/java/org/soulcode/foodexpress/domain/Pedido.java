@@ -10,7 +10,6 @@ public class Pedido {
     private LocalDateTime hora_pedido;
     private Cliente cliente;
     private Funcionario funcionario;
-
     private ArrayList<Item_Pedido> itens = new ArrayList<Item_Pedido>();
 
     public Pedido() {}
