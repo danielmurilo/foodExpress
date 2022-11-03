@@ -1,5 +1,6 @@
 package org.soulcode.foodexpress.domain;
 
+import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -35,7 +36,12 @@ public class Pedido {
     }
 
     public void setHora_pedido(LocalDateTime hora_pedido) {
-        this.hora_pedido = hora_pedido;
+        if(!hora_pedido.isBefore(LocalDateTime.now())){
+            this.hora_pedido = hora_pedido;
+        } else {
+            throw new DateTimeException("Hora_Pedido precisa ser atual!");
+        }
+
     }
 
     public Cliente getCliente() {
@@ -60,5 +66,13 @@ public class Pedido {
 
     public void setItens(ArrayList<Item_Pedido> itens) {
         this.itens = itens;
+    }
+
+    public Double getTotalConta(){
+        Double total = 0.0;
+        for (int i = 0; i < this.itens.size(); i++){
+            total += this.itens.get(i).getValor_venda();
+        }
+        return total;
     }
 }

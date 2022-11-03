@@ -49,7 +49,11 @@ public class Item_Pedido {
     }
 
     public void setQuantidade(Integer quantidade) {
-        this.quantidade = quantidade;
+        if (quantidade > 0){
+            this.quantidade = quantidade;
+        } else {
+            throw new SecurityException("Quantidade do Item_pedido deve ser maior que 0.");
+        }
     }
 
     public String getObservacao() {
