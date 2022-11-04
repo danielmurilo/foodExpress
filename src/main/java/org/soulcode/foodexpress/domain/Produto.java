@@ -31,7 +31,11 @@ public class Produto {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        if (nome.trim().length() < 1) {
+            this.nome = nome.trim();
+        } else {
+            throw new RuntimeException("Nome do produto precisa ser informado!");
+        }
     }
 
     public String getDescricao() {
@@ -39,7 +43,7 @@ public class Produto {
     }
 
     public void setDescricao(String descricao) {
-        this.descricao = descricao;
+        this.descricao = descricao.trim();
     }
 
     public Double getPreco() {

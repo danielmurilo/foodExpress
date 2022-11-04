@@ -39,7 +39,12 @@ public class Endereco {
     }
 
     public void setLogradouro(String logradouro) {
-        this.logradouro = logradouro;
+        if(logradouro.trim().length() > 3){
+            this.logradouro = logradouro.trim();
+        } else {
+            throw new RuntimeException("Logradouro precisa ter ao menos 3 caracteres");
+        }
+
     }
 
     public String getNumero() {
@@ -47,7 +52,11 @@ public class Endereco {
     }
 
     public void setNumero(String numero) {
-        this.numero = numero;
+        if(numero.trim().length() > 1) {
+            this.numero = numero.trim();
+        } else {
+            throw new RuntimeException("É preciso informar o número!");
+        }
     }
 
     public String getBairro() {
@@ -55,7 +64,11 @@ public class Endereco {
     }
 
     public void setBairro(String bairro) {
-        this.bairro = bairro;
+        if(bairro.trim().length() > 1) {
+            this.bairro = bairro.trim();
+        } else {
+            throw new RuntimeException("É preciso informar o bairro!");
+        }
     }
 
     public String getCidade() {
@@ -63,7 +76,11 @@ public class Endereco {
     }
 
     public void setCidade(String cidade) {
-        this.cidade = cidade;
+        if(cidade.trim().length() > 1) {
+            this.cidade = cidade.trim();
+        } else {
+            throw new RuntimeException("É preciso informar a cidade!");
+        }
     }
 
     public String getUf() {
@@ -71,7 +88,11 @@ public class Endereco {
     }
 
     public void setUf(String uf) {
-        this.uf = uf;
+        if(uf.trim().length() > 2) {
+            this.uf = uf.trim();
+        } else {
+            throw new RuntimeException("É preciso informar o Estado!");
+        }
     }
 
     public String getComplemento() {
@@ -79,15 +100,19 @@ public class Endereco {
     }
 
     public void setComplemento(String complemento) {
-        this.complemento = complemento;
+        this.complemento = complemento; //campo não é obrigatório!
     }
 
     public String getReferencia() {
         return referencia;
     }
 
-    public void setReferencia(String referencia) {
-        this.referencia = referencia;
+    public void setReferencia(String referencia){
+        if(referencia.trim().length() > 2) {
+            this.referencia = referencia.trim();
+        } else {
+            throw new RuntimeException("É preciso informar um ponto de referência!");
+        }
     }
 
     public String getCep() {
@@ -95,6 +120,6 @@ public class Endereco {
     }
 
     public void setCep(String cep) {
-        this.cep = cep;
+        this.cep = cep; //campo não é obrigatório!
     }
 }

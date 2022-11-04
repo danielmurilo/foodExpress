@@ -61,7 +61,7 @@ public class Item_Pedido {
     }
 
     public void setObservacao(String observacao) {
-        this.observacao = observacao;
+        this.observacao = observacao.trim();
     }
 
     public Double getValor_venda() {
@@ -69,6 +69,11 @@ public class Item_Pedido {
     }
 
     public void setValor_venda(Double valor_venda) {
-        this.valor_venda = valor_venda;
+        if (valor_venda >= 0.00) {
+            this.valor_venda = valor_venda;
+        } else {
+            throw new RuntimeException("Venda não pode ter valor negativo!");
+        }
+
     }
 }

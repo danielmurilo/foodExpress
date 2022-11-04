@@ -1,7 +1,8 @@
 package org.soulcode.foodexpress.domain;
 
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Cliente {
 
@@ -38,23 +39,33 @@ public class Cliente {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        if(nome.trim().length() > 5){
+            this.nome = nome.trim();
+        } else {
+            throw new RuntimeException("Nome do cliente precisa ter ao menos 5 caracteres!");
+        }
     }
 
-    public String getEmail() {
-        return email;
-    }
+    public String getEmail() {return email;}
 
     public void setEmail(String email) {
-        this.email = email;
+        try {
+            InternetAddress emailAddr = new InternetAddress(email);
+            emailAddr.validate();
+        } catch (AddressException ex) {
+            throw new RuntimeException("Informe um e-mail válido");
+        }
+        this.email = email.trim();
     }
 
-    public String getTelefone() {
-        return telefone;
-    }
+    public String getTelefone() { return telefone;}
 
     public void setTelefone(String telefone) {
-        this.telefone = telefone;
+        if(telefone.trim().length() > 8){
+            this.telefone = telefone.trim();
+        } else {
+            throw new RuntimeException("Telefone do cliente precisa ter ao menos 8 caracteres!");
+        }
     }
 
     public LocalDate getData_cadastro() {
@@ -62,7 +73,12 @@ public class Cliente {
     }
 
     public void setData_cadastro(LocalDate data_cadastro) {
-        this.data_cadastro = data_cadastro;
+        if(!data_cadastro.isBefore(LocalDate.now())){
+            this.data_cadastro = data_cadastro;
+        } else {
+            throw new RuntimeException("Data de Cadastro não pode ser inferior a data de hoje.");
+        }
+
     }
 
     public String getSenha() {
@@ -70,7 +86,11 @@ public class Cliente {
     }
 
     public void setSenha(String senha) {
-        this.senha = senha;
+        if (senha.trim().length() > 6) {
+            this.senha = senha.trim();
+        } else {
+            throw new RuntimeException("Senha precisa ter ao menos 6 caracteres!");
+        }
     }
 
     public Endereco getEndereco() {
